@@ -10,6 +10,9 @@ class PostBloc extends Bloc<PostEventBase, PostStateBase> {
   late PostRepository _repository;
   PostBloc(PostRepository postRepository) : super(PostStateInit()) {
     _repository = postRepository;
+    // on là lắng nghe tới event (giống stream)
+    // event là lấy sự kiện do người truyền vô cho sự kiện này
+    // emit là cập nhật cho sự kiện đó như thế nào
     on<FetchListPostEvent>((event, emit) async {
       try {
         Response response = await _repository.getListPosts();
